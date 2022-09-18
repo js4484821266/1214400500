@@ -93,6 +93,7 @@ def pass_etw(input):
 def pass_wheels(input, reverse=False):
     # Implement Wheel Logics
     # Keep in mind that reflected signals pass wheels in reverse order
+    # TODO
     return input
 
 # UKW
@@ -106,6 +107,7 @@ def pass_ukw(input):
 
 def rotate_wheels():
     # Implement Wheel Rotation Logics
+    # TODO
     pass
 
 
