@@ -1,8 +1,8 @@
 # Enigma Template Code for CNU Information Security 2022
 # Resources from https://www.cryptomuseum.com/crypto/enigma
 
-# This Enigma code implements Enigma I, which is utilized by 
-# Wehrmacht and Luftwaffe, Nazi Germany. 
+# This Enigma code implements Enigma I, which is utilized by
+# Wehrmacht and Luftwaffe, Nazi Germany.
 # This version of Enigma does not contain wheel settings, skipped for
 # adjusting difficulty of the assignment.
 
@@ -13,7 +13,7 @@ from ctypes import ArgumentError
 ETW = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 WHEELS = {
-    "I" : {
+    "I": {
         "wire": "EKMFLGDQVZNTOWYHXUSPAIBRCJ",
         "turn": 16
     },
@@ -42,6 +42,7 @@ SETTINGS = {
     "PLUGBOARD": []
 }
 
+
 def apply_settings(ukw, wheel, wheel_pos, plugboard):
     if not ukw in UKW:
         raise ArgumentError(f"UKW {ukw} does not exist!")
@@ -58,16 +59,19 @@ def apply_settings(ukw, wheel, wheel_pos, plugboard):
         if not wp in ETW:
             raise ArgumentError(f"WHEEL position must be in A-Z!")
         SETTINGS["WHEEL_POS"].append(ord(wp) - ord('A'))
-    
+
     plugboard_setup = plugboard.split(' ')
     for ps in plugboard_setup:
         if not len(ps) == 2 or not ps.isupper():
-            raise ArgumentError(f"Each plugboard setting must be sized in 2 and caplitalized; {ps} is invalid")
+            raise ArgumentError(
+                f"Each plugboard setting must be sized in 2 and caplitalized; {ps} is invalid")
         SETTINGS["PLUGBOARD"].append(ps)
 
 # Enigma Logics Start
 
 # Plugboard
+
+
 def pass_plugboard(input):
     for plug in SETTINGS["PLUGBOARD"]:
         if str.startswith(plug, input):
@@ -78,30 +82,40 @@ def pass_plugboard(input):
     return input
 
 # ETW
+
+
 def pass_etw(input):
     return SETTINGS["ETW"][ord(input) - ord('A')]
 
 # Wheels
-def pass_wheels(input, reverse = False):
+
+
+def pass_wheels(input, reverse=False):
     # Implement Wheel Logics
     # Keep in mind that reflected signals pass wheels in reverse order
     return input
 
 # UKW
+
+
 def pass_ukw(input):
     return SETTINGS["UKW"][ord(input) - ord('A')]
 
 # Wheel Rotation
+
+
 def rotate_wheels():
     # Implement Wheel Rotation Logics
     pass
 
+
 # Enigma Exec Start
-plaintext = input("Plaintext to Encode: ")
-ukw_select = input("Set Reflector (A, B, C): ")
-wheel_select = input("Set Wheel Sequence L->R (I, II, III): ")
-wheel_pos_select = input("Set Wheel Position L->R (A~Z): ")
-plugboard_setup = input("Plugboard Setup: ")
+plaintext = 't'.upper()  # input("Plaintext to Encode: ")
+ukw_select = 'b'.upper()  # input("Set Reflector (A, B, C): ")
+# input("Set Wheel Sequence L->R (I, II, III): ")
+wheel_select = 'i ii iii'.upper()
+wheel_pos_select = ''.upper()  # input("Set Wheel Position L->R (A~Z): ")
+plugboard_setup = ''.upper()  # input("Plugboard Setup: ")
 
 apply_settings(ukw_select, wheel_select, wheel_pos_select, plugboard_setup)
 
@@ -114,7 +128,7 @@ for ch in plaintext:
     encoded_ch = pass_etw(encoded_ch)
     encoded_ch = pass_wheels(encoded_ch)
     encoded_ch = pass_ukw(encoded_ch)
-    encoded_ch = pass_wheels(encoded_ch, reverse = True)
+    encoded_ch = pass_wheels(encoded_ch, reverse=True)
     encoded_ch = pass_plugboard(encoded_ch)
 
     print(encoded_ch, end='')
