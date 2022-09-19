@@ -112,12 +112,12 @@ def rotate_wheels():
 
 
 # Enigma Exec Start
-plaintext = 'lunch today is sandwich'.upper()  # input("Plaintext to Encode: ")
+plaintext = 'lunchtodayissandwich'.upper()  # input("Plaintext to Encode: ")
 ukw_select = 'c'.upper()  # input("Set Reflector (A, B, C): ")
 # input("Set Wheel Sequence L->R (I, II, III): ")
 wheel_select = 'iii i ii'.upper()
-wheel_pos_select = '1 1 1'.upper()  # input("Set Wheel Position L->R (A~Z): ")
-plugboard_setup = ''.upper()  # input("Plugboard Setup: ")
+wheel_pos_select = 'a a a'.upper()  # input("Set Wheel Position L->R (A~Z): ")
+plugboard_setup = 'av ft'.upper()  # input("Plugboard Setup: ")
 
 apply_settings(ukw_select, wheel_select, wheel_pos_select, plugboard_setup)
 
