@@ -94,9 +94,11 @@ def pass_wheels(input, reverse=False):
     # Implement Wheel Logics
     # Keep in mind that reflected signals pass wheels in reverse order
     if reverse:
-        pass
+        for t in range(len(SETTINGS["WHEELS"])):
+            input=ETW[SETTINGS["WHEELS"][t]["wire"].index(input)]
     else:
-        pass
+        for t in range(1,len(SETTINGS["WHEELS"])+1):
+            input=SETTINGS["WHEELS"][-t]["wire"][(SETTINGS["WHEEL_POS"][-t]+ord(input)-ord('A'))%26]
     return input
 
 # UKW
@@ -111,9 +113,10 @@ def pass_ukw(input):
 def rotate_wheels():
     # Implement Wheel Rotation Logics
     for t in range(1, len(SETTINGS["WHEELS"])+1):
-        SETTINGS["WHEELS"][-t]["turn"] -= 1
-        if SETTINGS["WHEELS"][-t]["turn"] < 0:
-            SETTINGS["WHEELS"][-t]["turn"] += 26
+        SETTINGS["WHEEL_POS"][-t] += 1
+        if SETTINGS["WHEEL_POS"][-t] >= 26:
+            SETTINGS["WHEEL_POS"][-t] = 0
+        if SETTINGS["WHEEL_POS"][-t] == SETTINGS["WHEELS"][-t]["turn"]:
             continue
         break
 
