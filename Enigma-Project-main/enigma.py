@@ -93,7 +93,10 @@ def pass_etw(input):
 def pass_wheels(input, reverse=False):
     # Implement Wheel Logics
     # Keep in mind that reflected signals pass wheels in reverse order
-    # TODO
+    if reverse:
+        pass
+    else:
+        pass
     return input
 
 # UKW
@@ -107,17 +110,21 @@ def pass_ukw(input):
 
 def rotate_wheels():
     # Implement Wheel Rotation Logics
-    # TODO
-    pass
+    for t in range(1, len(SETTINGS["WHEELS"])+1):
+        SETTINGS["WHEELS"][-t]["turn"] -= 1
+        if SETTINGS["WHEELS"][-t]["turn"] < 0:
+            SETTINGS["WHEELS"][-t]["turn"] += 26
+            continue
+        break
 
 
 # Enigma Exec Start
-plaintext = 'lunchtodayissandwich'.upper()  # input("Plaintext to Encode: ")
-ukw_select = 'c'.upper()  # input("Set Reflector (A, B, C): ")
+plaintext = 't'.upper()  # input("Plaintext to Encode: ")
+ukw_select = 'b'.upper()  # input("Set Reflector (A, B, C): ")
 # input("Set Wheel Sequence L->R (I, II, III): ")
-wheel_select = 'iii i ii'.upper()
+wheel_select = 'i ii iii'.upper()
 wheel_pos_select = 'a a a'.upper()  # input("Set Wheel Position L->R (A~Z): ")
-plugboard_setup = 'av ft'.upper()  # input("Plugboard Setup: ")
+plugboard_setup = 'kt wg'.upper()  # input("Plugboard Setup: ")
 
 apply_settings(ukw_select, wheel_select, wheel_pos_select, plugboard_setup)
 
