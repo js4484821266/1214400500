@@ -95,7 +95,7 @@ def pass_wheels(input, reverse=False):
     # Keep in mind that reflected signals pass wheels in reverse order
     if reverse:
         for t in range(len(SETTINGS["WHEELS"])):
-            input=ETW[SETTINGS["WHEELS"][t]["wire"].index(input)]
+            input=ETW[(SETTINGS["WHEELS"][t]["wire"].index(input)+SETTINGS["WHEEL_POS"][t])%26]
     else:
         for t in range(1,len(SETTINGS["WHEELS"])+1):
             input=SETTINGS["WHEELS"][-t]["wire"][(SETTINGS["WHEEL_POS"][-t]+ord(input)-ord('A'))%26]
