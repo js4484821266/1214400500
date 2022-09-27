@@ -120,7 +120,13 @@ def sdes(text: bitarray, key: bitarray, mode) -> bitarray:
     result = bitarray()
     
     # Place your own implementation of S-DES Here
-    # TODO
+    keys=list(schedule_keys(key))
+    for i in range(1,2):
+        keys.append(schedule_keys(keys[-1]))
+    if mode==MODE_ENCRYPT:
+        pass
+    else:
+        pass
     return result
 
 #### DES Sample Program Start
