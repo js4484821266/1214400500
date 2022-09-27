@@ -120,13 +120,7 @@ def sdes(text: bitarray, key: bitarray, mode) -> bitarray:
     result = bitarray()
     
     # Place your own implementation of S-DES Here
-    result=text
-    if mode==MODE_ENCRYPT:
-        for i in range(len(IP)):
-            result[i]=text[IP[i]]
-        #  TODO
-    else:
-        r=IP_1
+    # TODO
     return result
 
 #### DES Sample Program Start
