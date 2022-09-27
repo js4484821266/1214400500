@@ -121,11 +121,18 @@ def sdes(text: bitarray, key: bitarray, mode) -> bitarray:
     
     # Place your own implementation of S-DES Here
     keys=schedule_keys(key)
-    if mode==MODE_ENCRYPT:
-        pass
-    else:
-        pass
-    return result
+    for i in IP:
+        result.append(text[i])
+    nround=len(keys)
+    for i in range(nround):
+        if mode==MODE_ENCRYPT:
+            result=result[4:]+(round(result,keys[i])^result[:4])
+        else:
+            result=result[4:]+(round(result,keys[-i-1])^result[:4])
+    result=result[4:]+result[:4]
+    for i in IP_1:
+        result.append(result[i])
+    return result[8:]
 
 #### DES Sample Program Start
 
