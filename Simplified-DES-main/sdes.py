@@ -136,8 +136,8 @@ def sdes(text: bitarray, key: bitarray, mode) -> bitarray:
 
 #### DES Sample Program Start
 
-plaintext = input("[*] Input Plaintext in Binary (8bits): ")
-key = input("[*] Input Key in Binary (10bits): ")
+plaintext ='01100110'# input("[*] Input Plaintext in Binary (8bits): ")
+key ='0110110110'# input("[*] Input Key in Binary (10bits): ")
 
 # Plaintext must be 8 bits and Key must be 10 bits.
 if len(plaintext) != 8 or len(key) != 10:
