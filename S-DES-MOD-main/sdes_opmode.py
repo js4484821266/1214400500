@@ -154,10 +154,10 @@ def sdes_decrypt_ecb(ciphertext: bitarray, key: bitarray):
     return sdes(ciphertext,key,MODE_DECRYPT)
 
 def sdes_encrypt_cbc(text: bitarray, key: bitarray, iv:bitarray):
-    return sdes(text^iv,key,MODE_ENCRYPT)
+    return sdes(text^iv[:8],key,MODE_ENCRYPT)
 
 def sdes_decrypt_cbc(ciphertext: bitarray, key: bitarray, iv:bitarray):
-    return sdes(ciphertext,key,MODE_DECRYPT)^iv
+    return sdes(ciphertext,key,MODE_DECRYPT)^iv[:8]
 
 #### DES Sample Program Start
 
