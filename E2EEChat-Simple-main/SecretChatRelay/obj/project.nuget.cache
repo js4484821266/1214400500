@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "1CRIUNpqQpdseF9B+5IsfPGu1I5E4fKKI8/sh9tUDQUGXlauql7DOso3wGFua/8BRNtPFYOFcEMBTzbUiqTx8w==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\OneDrive - 충남대학교\\didactic\\강의자료\\충남대\\정보보호\\homework\\1214400500\\E2EEChat-Simple-main\\SecretChatRelay\\SecretChatRelay.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.14.0\\microsoft.visualstudio.azure.containers.tools.targets.1.14.0.nupkg.sha512"
+  ],
+  "logs": []
+}
