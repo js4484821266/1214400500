@@ -5,11 +5,11 @@ import base64
 def encode_base64(p):
     return base64.b64encode(p).decode('ascii')
 
-secret = # 32바이트 (256비트) 랜덤 비밀키 생성
+secret = Random.get_random_bytes(32)# 32바이트 (256비트) 랜덤 비밀키 생성
 
-rsa = # RSA 2048 키 생성 시작
-pubkey = # 공개키 export
-prikey = # 개인키 export
+rsa = RSA.generate(2048) # RSA 2048 키 생성 시작
+pubkey = rsa.publickey().exportKey('DER') # 공개키 export
+prikey = rsa.exportKey('DER') # 개인키 export
 
 print(encode_base64(secret) + '\n')
 
