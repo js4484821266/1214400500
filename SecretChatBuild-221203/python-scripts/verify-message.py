@@ -19,6 +19,13 @@ def read_from_base64():
 # https://pycryptodome.readthedocs.io/en/latest/src/signature/pkcs1_v1_5.html
 def verify(msg, key, signature):
     # PKCS #1 v1.5 를 이용한 전자서명 검증, 성공시 "ok" 리턴
+    k=RSA.import_key(key)
+    h = SHA256.new(msg)
+    try:
+        pkcs1_15.new(key).verify(h, signature)
+        return "ok"
+    except:
+        return "no"
 
 [msg, pubkey, signature] = read_from_base64()
 
