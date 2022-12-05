@@ -11,7 +11,7 @@ def encode_base64(p):
     return base64.b64encode(p).decode('ascii')
 
 def make_cert_hash(name, pubKeyBase64):
-	message = # 해시 생성 방법 -> H(name + pubKey)
+	message =name+pubKeyBase64 # 해시 생성 방법 -> H(name + pubKey)
 	return SHA256.new(message.encode('utf-8'))
 
 def read_as_json():
@@ -22,14 +22,19 @@ def read_as_json():
 # https://pycryptodome.readthedocs.io/en/latest/src/signature/pkcs1_v1_5.html
 def verify(hash, key, signature):
     # PKCS #1 v1.5 를 이용한 전자서명 검증, 성공시 True, 실패시 False 리턴
+	try:
+		pkcs1_15.new(RSA.import_key(key)).verify(hash,signature)
+		return True
+	except:
+		return False
 
 cert = read_as_json()
 
-hash_compare = # 비교할 해시 생성
-server_pubkey = # bytes:서버 공개키 (HINT: JSON에는 BASE64 형태로 제공되어 있음)
-signature = # bytes:서버 서명 (HINT: JSON에는 BASE64 형태로 제공되어 있음)
+hash_compare =make_cert_hash(cert['name'],cert['pubKey']) # 비교할 해시 생성
+server_pubkey =decode_base64(cert['serverPubKey']) # bytes:서버 공개키 (HINT: JSON에는 BASE64 형태로 제공되어 있음)
+signature =decode_base64(cert['signature']) # bytes:서버 서명 (HINT: JSON에는 BASE64 형태로 제공되어 있음)
 
-cert['isValid'] = # 인증서 내 서명 검증
+cert['isValid'] =verify(hash_compare,server_pubkey,signature) # 인증서 내 서명 검증
 
 json_str = json.dumps(cert).encode('utf-8')
 
